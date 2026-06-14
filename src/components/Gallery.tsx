@@ -17,7 +17,6 @@ export function Gallery({ photos, cameraSetting }: GalleryProps) {
   const modalFrameRef = useRef<number | null>(null);
   const decayFrameRef = useRef<number | null>(null);
   const latestPoint = useRef({ x: 0, y: 0 });
-  const previousPoint = useRef<{ x: number; y: number; time: number } | null>(null);
   const lastMoveTime = useRef(0);
   const lastDecayTime = useRef(0);
   const motionFocus = useRef(0);
@@ -86,21 +85,10 @@ export function Gallery({ photos, cameraSetting }: GalleryProps) {
         y: event.clientY - rect.top,
       };
       const now = performance.now();
-      const previous = previousPoint.current;
 
       latestPoint.current = nextPoint;
       lastMoveTime.current = now;
-
-      if (previous) {
-        const distance = Math.hypot(nextPoint.x - previous.x, nextPoint.y - previous.y);
-        const delta = Math.max(now - previous.time, 8);
-        const speed = distance / delta;
-        const nextTargetFocus = distance > 0 ? Math.min(Math.max((speed - 0.015) / 0.65, 0.45), 1) : 0;
-
-        targetMotionFocus.current += (nextTargetFocus - targetMotionFocus.current) * 0.55;
-      }
-
-      previousPoint.current = { ...nextPoint, time: now };
+      targetMotionFocus.current = 1;
 
       if (frameRef.current === null) {
         frameRef.current = window.requestAnimationFrame(updateCursor);
