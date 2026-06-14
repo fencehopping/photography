@@ -4,6 +4,7 @@ import type { CategoryFilterValue } from '../lib/photos';
 import type { CameraSetting } from '../types';
 
 interface HeaderProps {
+  categories: CategoryFilterValue[];
   category: CategoryFilterValue;
   cameraSetting: CameraSetting;
   onCategoryChange: (value: CategoryFilterValue) => void;
@@ -11,6 +12,7 @@ interface HeaderProps {
 }
 
 export function Header({
+  categories,
   category,
   cameraSetting,
   onCategoryChange,
@@ -18,16 +20,20 @@ export function Header({
 }: HeaderProps) {
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label="Sara Cohen home">
-        Sara Cohen
+      <a className="brand" href="/" aria-label="Sarah Cronin home">
+        <span className="brand-name">Sarah Cronin</span>
+        <span className="brand-location">
+          <span>SCITUATE, MA</span>
+          <span>42.1957° N, -70.7249° W</span>
+        </span>
       </a>
       <nav className="primary-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="mailto:sara@example.com">Hire Me</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
       </nav>
       <div className="header-controls">
-        <CategoryFilter value={category} onChange={onCategoryChange} />
         <CameraSettingsMenu value={cameraSetting} onChange={onCameraSettingChange} />
+        <CategoryFilter categories={categories} value={category} onChange={onCategoryChange} />
       </div>
     </header>
   );

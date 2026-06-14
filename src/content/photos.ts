@@ -84,7 +84,7 @@ export const photos: Photo[] = localImageFiles.map((filename, index) => {
   return {
     id: filename.replace(/\.[^.]+$/, ''),
     src: imageModules[`../../images/${filename}`],
-    alt: `${title} by Sara Cohen`,
+    alt: `${title} by Sarah Cronin`,
     category: categories[index % categories.length],
     title,
     featured: index % 9 === 0,

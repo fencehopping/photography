@@ -1,9 +1,4 @@
-export type PhotoCategory =
-  | 'Weddings'
-  | 'Portraits'
-  | 'Families'
-  | 'Lifestyle'
-  | 'Events';
+export type PhotoCategory = string;
 
 export type CameraSetting =
   | 'standard'
