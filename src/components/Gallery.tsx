@@ -46,7 +46,9 @@ export function Gallery({ photos, cameraSetting }: GalleryProps) {
       targetMotionFocus.current *= targetDecay;
     }
 
-    const easing = 1 - Math.pow(0.88, frameRatio);
+    const isIncreasingBlur = targetMotionFocus.current > motionFocus.current;
+    const easingBase = isIncreasingBlur ? 0.982 : 0.88;
+    const easing = 1 - Math.pow(easingBase, frameRatio);
     const nextFocus = motionFocus.current + (targetMotionFocus.current - motionFocus.current) * easing;
 
     setMotionFocus(nextFocus);
