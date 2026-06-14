@@ -35,7 +35,8 @@ const hireCategories = [
 ];
 
 export default function App() {
-  const isAdminRoute = window.location.pathname.replace(/\/$/, '') === '/admin';
+  const normalizedPath = window.location.pathname.replace(/\/$/, '');
+  const isAdminRoute = normalizedPath === '/admin' || normalizedPath === '/admin.html';
   const [category, setCategory] = useState<CategoryFilterValue>('All');
   const [cameraSetting, setCameraSetting] = useState<CameraSetting>('standard');
   const [categories, setCategories] = useState<CategoryFilterValue[]>(getCategories());
