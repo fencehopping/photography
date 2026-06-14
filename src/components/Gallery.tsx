@@ -42,8 +42,8 @@ export function Gallery({ photos, cameraSetting }: GalleryProps) {
 
     lastDecayTime.current = now;
 
-    if (timeSinceMove > 90) {
-      const targetDecay = Math.pow(0.72, frameRatio);
+    if (timeSinceMove > 260) {
+      const targetDecay = Math.pow(0.985, frameRatio);
       targetMotionFocus.current *= targetDecay;
     }
 

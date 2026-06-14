@@ -35,6 +35,7 @@ const hireCategories = [
 ];
 
 export default function App() {
+  const isAdminRoute = window.location.pathname.replace(/\/$/, '') === '/admin';
   const [category, setCategory] = useState<CategoryFilterValue>('All');
   const [cameraSetting, setCameraSetting] = useState<CameraSetting>('standard');
   const [categories, setCategories] = useState<CategoryFilterValue[]>(getCategories());
@@ -42,7 +43,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (window.location.pathname === '/admin') {
+    if (isAdminRoute) {
       return;
     }
 
@@ -69,9 +70,9 @@ export default function App() {
     return () => {
       isMounted = false;
     };
-  }, [category]);
+  }, [category, isAdminRoute]);
 
-  if (window.location.pathname === '/admin') {
+  if (isAdminRoute) {
     return <Admin />;
   }
 
