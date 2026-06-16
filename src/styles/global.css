@@ -1,6 +1,6 @@
 :root {
   color: #181715;
-  background: #f7f5f1;
+  background: #050505;
   font-family:
     "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -25,6 +25,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: #050505;
 }
 
 body.modal-open {
@@ -56,7 +57,13 @@ textarea {
   align-items: center;
   min-height: 73px;
   padding: 0 24px 14px;
-  background: #0d346c;
+  border-bottom: 1px solid rgb(255 255 255 / 0.16);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.15), rgb(255 255 255 / 0.032) 42%, rgb(0 0 0 / 0) 43%),
+    linear-gradient(180deg, rgb(0 0 0 / 0.92), rgb(0 0 0 / 0.72));
+  box-shadow: 0 18px 44px rgb(0 0 0 / 0.22), inset 0 1px 0 rgb(255 255 255 / 0.22);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
   color: #ffffff;
   cursor: auto;
 }
@@ -151,35 +158,44 @@ textarea {
 .select-button {
   position: relative;
   display: grid;
-  grid-template-columns: 18px max-content 12px;
+  grid-template-columns: 18px max-content 10px;
   align-items: center;
-  gap: 10px;
-  min-height: 36px;
-  border: 2px solid #0c274d;
+  gap: 9px;
+  min-height: 38px;
+  border: 1px solid rgb(255 255 255 / 0.22);
   border-radius: 999px;
-  padding: 6px 12px;
-  background: transparent;
+  padding: 7px 13px;
+  background: rgb(255 255 255 / 0.065);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    0 8px 22px rgb(0 0 0 / 0.16);
   color: #ffffff;
   transition:
     background 160ms ease,
     border-color 160ms ease,
-    color 160ms ease;
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .select-button::after {
   content: "\f107";
   font-family: "Font Awesome 6 Free";
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   line-height: 1;
-  opacity: 1;
+  opacity: 0.78;
 }
 
 .select-button:focus-within,
 .select-button:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgb(255 255 255 / 0.38);
+  background: rgb(255 255 255 / 0.12);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.24),
+    0 10px 26px rgb(0 0 0 / 0.22);
   color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .select-icon {
@@ -188,10 +204,10 @@ textarea {
   font-family: "Font Awesome 6 Free";
   width: 18px;
   height: 18px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
   line-height: 1;
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .select-icon-image {
@@ -200,8 +216,9 @@ textarea {
 }
 
 .select-label {
-  font-size: 10.5px;
-  font-weight: 400;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   line-height: normal;
 }
 
