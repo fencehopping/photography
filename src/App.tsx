@@ -118,7 +118,7 @@ export default function App() {
               availability and next steps.
             </p>
           </div>
-          <form className="contact-form" action="mailto:sara@example.com" method="post" encType="text/plain">
+          <form className="contact-form" action="mailto:sarahrcronin11@gmail.com" method="post" encType="text/plain">
             <label>
               <span>Name</span>
               <input name="name" type="text" autoComplete="name" required />
