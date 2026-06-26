@@ -2,7 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { FormEvent } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { getRemoteCategories, getRemotePhotos } from '../lib/photos';
-import { ADMIN_EMAIL, isAdminEmail, isSupabaseConfigured, PHOTO_BUCKET, supabase } from '../lib/supabase';
+import {
+  ADMIN_EMAIL,
+  ADMIN_EMAILS,
+  isAdminEmail,
+  isSupabaseConfigured,
+  PHOTO_BUCKET,
+  supabase,
+} from '../lib/supabase';
 import type { Photo } from '../types';
 
 export function Admin() {
@@ -64,7 +71,7 @@ export function Admin() {
     }
 
     if (!isAdminEmail(email)) {
-      setMessage(`Only ${ADMIN_EMAIL} can access this admin area.`);
+      setMessage(`Only authorized admin emails can access this admin area.`);
       return;
     }
 
@@ -217,7 +224,7 @@ export function Admin() {
       <main className="admin-page">
         <section className="admin-panel">
           <h1>Access denied</h1>
-          <p>Signed in as {session.user.email}. This admin area is limited to {ADMIN_EMAIL}.</p>
+          <p>Signed in as {session.user.email}. This admin area is limited to authorized admin emails.</p>
           <button type="button" onClick={handleSignOut}>
             Sign out
           </button>
@@ -232,7 +239,7 @@ export function Admin() {
         <header className="admin-topbar">
           <div>
             <h1>Portfolio admin</h1>
-            <p>{ADMIN_EMAIL}</p>
+            <p>{ADMIN_EMAILS.join(', ')}</p>
           </div>
           <a href="/">View site</a>
           <button type="button" onClick={handleSignOut}>
